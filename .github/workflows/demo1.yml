@@ -1,11 +1,31 @@
 name: Events Demo 1
 on: 
   pull_request:
+      # Activity Types 
+      # types can be specified in a square bracket if there more than one activity being tracked.
       # types: [opened, edited]
+      # types can be specified continious list of activity if there one or more.
       types: 
         - opened
-        # - edited
+        # - edited      
+      branches:
+        # main
+        - main
+        # dev-new or dev-this-is-new
+        - 'dev-*'
+        # feat/new or feat/new/button etc.,
+        - 'feat/**' 
   workflow_dispatch:
+  push:
+    branches:
+      # main
+      - main
+      # dev-new or dev-this-is-new
+      - 'dev-*'
+      # feat/new or feat/new/button etc.,
+      - 'feat/**' 
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
